@@ -4,7 +4,6 @@ import java.applet.Applet;
 import java.applet.AppletStub;
 import java.awt.BorderLayout;
 import java.awt.Color;
-
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -12,8 +11,11 @@ import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.VolatileImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -36,6 +38,8 @@ public class Launcher extends Applet
   private int context = 0;
   private boolean hasMouseListener = false;
   private VolatileImage img;
+  public String user = this.getParameter("userName");
+  public String sesion = getParameter("sessionId");
 
   public boolean isActive()
   {
@@ -76,50 +80,40 @@ public class Launcher extends Applet
     }
     init(getParameter("userName"), getParameter("latestVersion"), getParameter("downloadTicket"), getParameter("sessionId"));
   }
+  public void launchMinecraft()
+	{
+		try {
+			// laucnher folder
+			String mcpath = Util.getWorkingDirectory().getAbsolutePath();
+			// nickname
+			String nick = this.getParameter("username");
+			// RAM
+			String mem = "1024M";
+			// minecraft launch version
 
-  public void start() {
-    if (this.applet != null) {
-      this.applet.start();
-      return;
-    }
-    if (this.gameUpdaterStarted) return;
-
-    Thread t = new Thread() {
-      public void run() {
-        Launcher.this.gameUpdater.run();
-        try {
-          String  mcpath = Util.getWorkingDirectory().getAbsolutePath();
-          String mem = "1024M";
-       // minecraft launch version
-
-       			// location of jar file
-       			File workDir = Util.getWorkingDirectory();
-       			File assetDir = new File(workDir, "assets");
-       			File binDir = new File(workDir, "bin");
-       			File nativeDir = new File(binDir, "natives");
-       			File jar = new File(binDir, "darkube.jar");
-       			// libs and java locations
-       			String cps;
-       			String java = '"'+System.getProperty("java.home");
-       			if (System.getProperty("os.name").toLowerCase().contains("win")) {
-       				cps = ";";
-       				java+=File.separator+"bin"+File.separator+"javaw.exe"+'"';
-       			} else {
-       				cps = ":";
-       				java+=File.separator+"bin"+File.separator+"java";
-       			}
-       			ProcessBuilder pb = new ProcessBuilder();
-		if (!Launcher.this.gameUpdater.fatalError)
-        	  
-        	  
-			
+			// location of jar file
+			File workDir = Util.getWorkingDirectory();
+			File assetDir = new File(workDir, "assets");
+			File binDir = new File(workDir, "bin");
+			File nativeDir = new File(binDir, "natives");
+			File jar = new File(binDir, "darkube.jar");
+			// libs and java locations
+			String cps;
+			String java = '"'+System.getProperty("java.home");
+			if (System.getProperty("os.name").toLowerCase().contains("win")) {
+				cps = ";";
+				java+=File.separator+"bin"+File.separator+"javaw.exe"+'"';
+			} else {
+				cps = ":";
+				java+=File.separator+"bin"+File.separator+"java";
+			}
 
 
 			// mods tweaks type
 
 
 
-		
+			ProcessBuilder pb = new ProcessBuilder();
 			pb.directory(new File(mcpath).getCanonicalFile());
 			List<String> cc = new ArrayList<String>();
 			cc.add(java);
@@ -131,14 +125,14 @@ public class Launcher extends Applet
 			cc.add("-cp");
 			cc.add(jar.getAbsolutePath());
 			//minecraft with tweaks
-			cc.add("net.McKay.launchwrapper.Launch");
+			cc.add("net.minecraft.launchwrapper.Launch");
 			cc.add("--tweakClass");
 			// minecraft with forge
 			cc.add("cpw.mods.fml.common.launcher.FMLTweaker");
 
 
 			cc.add("--username");
-			cc.add(getParameter("userName"));
+			cc.add(nick);
 			cc.add("--session");
 			cc.add(getParameter("sessionid"));
 			cc.add("--version");
@@ -152,11 +146,35 @@ public class Launcher extends Applet
 			pb.command(cc);
 			pb.inheritIO(); // Do not remove this
 			Process pro = pb.start();
-        }
-        catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(cc.toString());
+	
+			InputStream is = pro.getInputStream();
+		    InputStreamReader isr = new InputStreamReader(is);
+		    BufferedReader br = new BufferedReader(isr);
+		    String line;
+		    while ((line = br.readLine()) != null) {
+		      System.out.println(line);
+		    }
+		    //SpoutcraftLauncher.flush();
+		    System.exit(0);
+
+		} catch (Exception e) {
+
 		}
+	}
+
+  public void start() {
+    if (this.applet != null) {
+      this.applet.start();
+      return;
+    }
+    if (this.gameUpdaterStarted) return;
+
+    Thread t = new Thread() {
+      public void run() {
+        Launcher.this.gameUpdater.run();
+        if (!Launcher.this.gameUpdater.fatalError)
+        	  launchMinecraft();
       }
     };
     t.setDaemon(true);
@@ -258,7 +276,7 @@ public class Launcher extends Applet
     {
       g.setColor(Color.LIGHT_GRAY);
 
-      String msg = "Mise � jour de - McKay";
+      String msg = "Mise à jour de - McKay";
       if (this.gameUpdater.fatalError) {
         msg = "Failed to launch";
       }

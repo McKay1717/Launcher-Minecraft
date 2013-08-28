@@ -45,8 +45,8 @@ import java.util.jar.Pack200;
 public class GameUpdater
   implements Runnable
 {
-  public String urlFolder = "dossierDuJar", versionFileTxt = "versionTxt", zipFile = "modEtToutEnZip";
-  public static String urlBlog = "http://tweet-mod.com/tweetmod/download/launcher/easylauncher.htm";//Url de la page d'accueil du launcher, par d�faut un tuto :)
+  public String urlFolder = "dossierduJar", versionFileTxt = "FichierVersion", zipFile = "Zip";
+  public static String urlBlog = "http://www.youtube.com/user/mckayonminecraft";//Url de la page d'accueil du launcher, par d�faut un tuto :)
   public File zip, folder;
   public static final int STATE_INIT = 1;
   public static final int STATE_DETERMINING_PACKAGES = 2;
@@ -123,21 +123,21 @@ public class GameUpdater
     case 1:
       return "Initialisation du chargement.";
     case 2:
-      return "Determination des packages � t�l�charger.";
+      return "Determination des packages a telecharger.";
     case 3:
-      return "V�rification du cache pour les fichiers existants.";
+      return "Verification du cache pour les fichiers existants.";
     case 4:
-      return "T�l�chargement des packages.";
+      return "Telechargement des packages.";
     case 5:
-      return "Extraction des packages t�l�charg�s.";
+      return "Extraction des packages telecharges.";
     case 6:
-      return "Mise � jour du classpath.";
+      return "Mise a jour du classpath.";
     case 7:
       return "Changement de l'applet.";
     case 8:
-      return "Initialisation de l'applet r�elle.";
+      return "Initialisation de l'applet reelle.";
     case 9:
-      return "Ouverture de l'applet r�elle.";
+      return "Ouverture de l'applet reelle.";
     case 10:
       return "Fin du chargement.";
     }
@@ -173,7 +173,7 @@ public class GameUpdater
         path = new URL(urlFolder);
   	 }
      if (nextToken.indexOf("minecraft.jar") >= 0) {
-       this.urlList[i] = new URL(path, nextToken.replaceAll("minecraft.jar", "McKay.jar"));
+       this.urlList[i] = new URL(path, nextToken.replaceAll("minecraft.jar", "darkube.jar"));
   	   }
   	   else 
   	   {
@@ -483,7 +483,7 @@ public void run()
 
   public Applet createApplet() throws ClassNotFoundException, InstantiationException, IllegalAccessException
   {
-    Class appletClass = classLoader.loadClass("net.McKay.client.MinecraftApplet");
+    Class appletClass = classLoader.loadClass("net.minecraft.client.MinecraftApplet");
     return (Applet)appletClass.newInstance();
   }
 
@@ -695,7 +695,7 @@ public void run()
   protected void extractNatives(String path) throws Exception
   {
     this.state = 5;
-
+/*
     int initialPercentage = this.percentage;
 
     String nativeJar = getJarName(this.urlList[(this.urlList.length - 1)]);
@@ -777,7 +777,7 @@ public void run()
     jarFile.close();
 
     File f = new File(path + nativeJar);
-    f.delete();
+    f.delete();*/
   }
 
   protected static void validateCertificateChain(Certificate[] ownCerts, Certificate[] native_certs)
