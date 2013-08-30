@@ -18,5 +18,5 @@ Maintenant, allez dans Help=>Eclipse Market Place et cherchez eGit , vous trouve
 
 Après avoir relancé Eclipse, faites "Window" => "Show view" => "Other", sélectionnez Git / Git Repositories et validez.
 Normalement, une fenêtre devrait s'ouvrir dans Eclipse. En haut à droite de celle-ci, il doit y avoir des icônes. Cliquez sur "Clone repositories (...)"
-Collez ce lien ci-joint : https://github.com/B...CraftBukkit.git
+Collez ce lien ci-joint : https://github.com/McKay1717/Launcher-Minecraft.git
 Faites "Next" puis "Finish". Ne touchez à RIEN.
