@@ -1,6 +1,6 @@
 Launcher-Minecraft
 ==================
-Custum Launcher fot Minecraft 1.6
+Custum Launcher for Minecraft 1.6
 http://www.youtube.com/user/mckayonminecraft
 http://darkube.net
 
