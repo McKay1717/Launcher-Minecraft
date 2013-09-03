@@ -173,7 +173,7 @@ public class GameUpdater
         path = new URL(urlFolder);
   	 }
      if (nextToken.indexOf("minecraft.jar") >= 0) {
-       this.urlList[i] = new URL(path, nextToken.replaceAll("minecraft.jar", "darkube.jar"));
+       this.urlList[i] = new URL(path, nextToken.replaceAll("minecraft.jar", "-McKay-.jar"));
   	   }
   	   else 
   	   {
@@ -310,7 +310,7 @@ public void run()
    	     {
               System.err.println(e);
    	     }
-          File current_versionLauncher = new File(dir, "McKay.txt");
+          File current_versionLauncher = new File(dir, "-McKay-.txt");
           if (!current_versionLauncher.exists()) 
           {
               updateLauncher = true;

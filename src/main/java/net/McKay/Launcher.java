@@ -276,7 +276,7 @@ public class Launcher extends Applet
     {
       g.setColor(Color.LIGHT_GRAY);
 
-      String msg = "Mise à jour de - McKay";
+      String msg = "Mise à jour de - -McKay-";
       if (this.gameUpdater.fatalError) {
         msg = "Failed to launch";
       }

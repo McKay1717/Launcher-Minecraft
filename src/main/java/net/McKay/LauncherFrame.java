@@ -24,7 +24,7 @@ public class LauncherFrame extends Frame
 
   public LauncherFrame()
   {
-    super("McKay Launcher");
+    super("-McKay- Launcher");
 
     setBackground(Color.BLACK);
     this.loginForm = new LoginForm(this);
@@ -82,7 +82,7 @@ public class LauncherFrame extends Frame
       validate();
       this.launcher.start();
       this.loginForm = null;
-      setTitle("McKay");
+      setTitle("-McKay-");
     } catch (Exception e) {
       e.printStackTrace();
       showError(e.toString());
@@ -126,7 +126,7 @@ public class LauncherFrame extends Frame
       this.launcher.start();
       this.loginForm.loginOk();
       this.loginForm = null;
-      setTitle("McKay");
+      setTitle("-McKay-");
     } catch (Exception e) {
       e.printStackTrace();
       showError(e.toString());

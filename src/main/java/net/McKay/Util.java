@@ -17,7 +17,7 @@ public class Util
   private static File workDir = null;
 
   public static File getWorkingDirectory() {
-    if (workDir == null) workDir = getWorkingDirectory("McKay");
+    if (workDir == null) workDir = getWorkingDirectory("-McKay-");
     return workDir;
   }
 
