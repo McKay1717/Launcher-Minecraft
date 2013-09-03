@@ -9,7 +9,7 @@ http://darkube.net
 Installer JDK : http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html
 
 Tout d'abord, lancez Eclipse dans le Workspace où se trouve votre mod. Cliquez en haut sur "Help" puis "Install New Software".
-Collez ceci - http://m2eclipse.son...e.org/sites/m2e - dans la barre et tapez sur la touche "Entrée".
+Collez ceci - http://download.eclipse.org/technology/m2e/releases - dans la barre et tapez sur la touche "Entrée".
 Vous devriez voir apparaître "Maven Integration for Eclipse" en dessous. Cochez-le puis cliquez sur "Next", puis encore une fois "Next".
 Acceptez le contrat puis cliquez encore sur "Next".
 Une fois l'installation finie, il vous demandera de redémarrer Eclipse, acceptez.
